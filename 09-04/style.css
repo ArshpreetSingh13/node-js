@@ -1,0 +1,51 @@
+.time-unit {
+    text-align: center;
+}
+
+.circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    position: relative;
+    background: conic-gradient(#000 0deg, #000 360deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    position: absolute;
+    top: 5px;
+    transform-origin: center 60px;
+}
+
+#dot-hour {
+    background-color: hotpink;
+}
+
+#dot-minute {
+    background-color: yellow;
+    box-shadow: 0 0 10px yellow;
+}
+
+#dot-second {
+    background-color: limegreen;
+}
+
+.time-text {
+    position: absolute;
+    text-align: center;
+}
+
+h2 {
+    font-size: 32px;
+    margin: 0;
+}
+
+small {
+    font-size: 12px;
+    color: #aaa;
+}

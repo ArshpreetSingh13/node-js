@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+<form action="">
+    <div class="row mt-5">
+        <div class="col-md-4 offset-4">
+            <div class="mb-3">
+                <label class="form-label">Enter Your Box Height</label>
+                <input type="number" class="form-control" placeholder=" Enter Your Box Height" id="height">
+
+                
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Enter Your Box width</label>
+                <input type="number" class="form-control" placeholder=" Enter Your Box width" id="width">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Enter Your Box Contant</label>
+                <input type="text" class="form-control" placeholder=" Enter Your Box Contant" id="contant">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Enter Your Box Color</label>
+                <select class="form-select" id="color">
+                    <option selected disabled>Open this select menu</option>
+                    <option value="red">Red</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="green">Green</option>
+                    <option value="blue">Blue</option>
+                    <option value="white">White</option>
+                    <option value="black">Black</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Enter Your Text Color</label>
+                <select class="form-select" id="text_color">
+                    <option selected disabled>Open this select menu</option>
+                    <option value="red">Red</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="green">Green</option>
+                    <option value="blue">Blue</option>
+                    <option value="white">White</option>
+                    <option value="black">Black</option>
+                </select>
+            </div>
+            <div class="mb-3 d-flex justify-content-center ">
+                <button type="button" class="btn btn-primary" id="res" onclick="box()">Primary</button>
+            </div>
+
+
+
+        </div>
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-12 " id="box">
+
+            </div>
+        </div>
+    </div>
+</form>
+    </div>
+   
+
+    <script>
+        function box(){
+            let height=document.getElementById("height").value
+            let width=document.getElementById("width").value
+            let contant=document.getElementById("contant").value
+            let color=document.getElementById("color").value
+            let text_color=document.getElementById("text_color").value
+
+            
+            let box=document.getElementById("box");
+            box.style.height=height+"px"
+            box.style.width=width+"px"
+            box.style.backgroundColor=color
+            box.innerHTML=contant
+            box.style.color=text_color
+            
+        }
+    </script>
+    
+</body>
+</html>

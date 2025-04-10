@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flat Digital Clock</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+   <style>
+    body.bg-gradient {
+  background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.clock-card {
+  background-color: #111;
+  border-radius: 10px;
+  padding: 40px 60px;
+  display: flex;
+  gap: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.clock-item h1 {
+  font-size: 60px;
+  margin: 0;
+}
+
+.clock-item p {
+  margin: 0;
+  font-size: 14px;
+  color: #bbb;
+}
+
+.separator {
+  font-size: 60px;
+  line-height: 0;
+  padding-top: 0px;
+  color: #fff;
+}
+
+   </style>
+</head>
+
+<body class="bg-gradient d-flex justify-content-center align-items-center vh-100">
+    <div class="clock-card text-white text-center d-flex justify-content-around align-items-center">
+        <div class="clock-item">
+            <h1 id="day">DAY</h1>
+            <p>DAY</p>
+        </div>
+        <div class="separator">:</div>
+        <div class="clock-item">
+            <h1 id="hour">00</h1>
+            <p>HOURS</p>
+        </div>
+        <div class="separator">:</div>
+        <div class="clock-item">
+            <h1 id="minute">00</h1>
+            <p>MINUTES</p>
+        </div>
+        <div class="separator">:</div>
+        <div class="clock-item">
+            <h1 id="second">00</h1>
+            <p>SECONDS</p>
+        </div>
+        <div class="separator">:</div>
+        <div class="clock-item">
+            <h1 id="ampm">AM</h1>
+            <p></p>
+        </div>
+    </div>
+
+    <script>
+        function time() {
+            var d = new Date();
+            let day = document.getElementById("day");
+            let h = document.getElementById("hour");
+            let m = document.getElementById("minute");
+            let s = document.getElementById("second");
+            let days=["SU", "MO", "TU", "WE", "TH", "FR", "SA"];
+            let hours=[12,1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11];
+
+            day.innerHTML=days[d.getDay()];
+            h.innerHTML = hours[d.getHours()]
+            m.innerHTML = d.getMinutes()
+            s.innerHTML = d.getSeconds()
+            
+           
+
+
+            
+            if (d.getHours() <= 12) {
+                
+                document.getElementById("ampm").innerHTML = "AM"
+            }
+            else {
+                document.getElementById("ampm").innerHTML = "PM"
+                
+            }
+            
+            
+            
+
+
+
+
+        }
+
+        setInterval(function () {
+            time()
+        }, 1000)
+    </script>
+</body>
+
+</html>
