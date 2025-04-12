@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Number Table Generator</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        td,
+        th {
+            border: 1px solid #333;
+            padding: 8px 12px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Generate Number Table</h2>
+
+    <label>Start: <input type="number" id="start"></label>
+    <label>End: <input type="number" id="end"></label>
+    <label>Rows: <input type="number" id="rows"></label>
+    <button onclick="generateTable()">Generate</button>
+
+    <div id="tableContainer"></div>
+
+    <script>
+        function generateTable() {
+            const start = parseFloat(document.getElementById('start').value);
+            const end = parseFloat(document.getElementById('end').value);
+            const rows = parseInt(document.getElementById('rows').value);
+            const container = document.getElementById('tableContainer');
+
+            if (isNaN(start) || isNaN(end) || isNaN(rows) || rows <= 0) {
+                container.innerHTML = "<p>Please enter valid numbers for all fields.</p>";
+                return;
+            }
+
+            const step = (end - start) / (rows - 1);
+            let html = "<table><tr><th>#</th><th>Value</th></tr>";
+
+            for (let i = 0; i < rows; i++) {
+                const value = start + step * i;
+                html += `<tr><td>${i + 1}</td><td>${value.toFixed(2)}</td></tr>`;
+            }
+
+            html += "</table>";
+            container.innerHTML = html;
+        }
+    </script>
+</body>
+
+</html>
