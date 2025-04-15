@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        .H {
+            height: 550px;
+        }
+
+        .C {
+            background-color: rgb(167, 161, 159);
+            height: 500px;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4 border H border-2">
+                <div class="bg-secondary p-1 text-center text-light fw-bolder fs-3">
+                    Admin
+                </div>
+
+                <div class="C d-flex align-items-center flex-column p-4">
+                    <h4>Add a new Product</h4>
+                    <div class="p-4">
+                        <input type="text" id="add_product">
+                        <button id="add_product_btn">Add Product</button>
+                    </div>
+                    <p class="fs-5">Select a product then add price per unit</p>
+
+                    <select name="" id="fruit_list" class="w-50">
+                        <option value="" selected disabled>Select item</option>
+                    </select>
+
+                    <div class="p-4">
+
+                        <input type="text" name="" id="pro_price">
+                        <button id="pro_price_btn">Add Product</button>
+                    </div>
+                    <p id="war" class="text-danger"></p>
+                </div>
+            </div>
+
+            <div class="col-md-4 border H border-2">
+                <div class="bg-secondary p-1 text-center text-light fw-bolder fs-3">
+                    CheckOut
+                </div>
+
+                <div class="C d-flex align-items-center flex-column p-4">
+
+                    <button id="new">New Transaction</button>
+                    <p class="fs-5">Select a product then quantity of unit</p>
+                    <div class="p-4">
+                        <select name="" id="fruit_list2" class="w-50">
+                            <option value="" selected disabled>Select item</option>
+                        </select>
+                        <input type="number" id="unit" class="w-25">
+
+                    </div>
+                    <button id="cart">Add cart</button>
+
+
+
+                    <div class=" d-flex w-100">
+                        <button class="w-50 mx-2 my-1" id="one">1</button>
+                        <button class="w-50 mx-2 my-1" id="two">2</button>
+
+                    </div>
+                    <div class=" d-flex w-100">
+                        <button class="w-50 mx-2 my-1" id="three">3</button>
+                        <button class="w-50 mx-2 my-1" id="four">4</button>
+
+                    </div>
+                    <div class=" d-flex w-100">
+                        <button class="w-50 mx-2 my-1" id="five">5</button>
+                        <button class="w-50 mx-2 my-1" id="six">6</button>
+
+                    </div>
+                    <div class=" d-flex w-100">
+                        <button class="w-50 mx-2 my-1" id="seven">7</button>
+                        <button class="w-50 mx-2 my-1" id="eight">8</button>
+
+                    </div>
+                    <div class=" d-flex w-100 justify-content-center">
+                        <button class="w-50 mx-2 my-1" id="nine">9</button>
+
+                    </div>
+                    <div class=" d-flex w-100 justify-content-end">
+
+                        <button class="w-25 mx-2 my-1" id="pay">Pay now</button>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-4 border H border-2">
+                <div class="bg-secondary p-1 text-center text-light fw-bolder fs-3">
+                    Receipt
+                </div>
+
+                <div class="C d-flex align-items-center flex-column p-4">
+                    <table class="w-100 bg-white" id="tb" class="table border border-1">
+                        <tr>
+                            <th>Product</th>
+                            <th>$/unit</th>
+                            <th>Unit(s)</th>
+                            <th>Price</th>
+                        </tr>
+                    </table>
+                </div>
+
+
+
+            </div>
+        </div>
+
+        <script>
+            let fruit = [
+
+            ]
+            let pro_btn = document.getElementById("add_product_btn");
+            pro_btn.addEventListener("click", function () {
+                let fruit_n = document.getElementById("add_product").value;
+                fruit.push({
+                    name: fruit_n
+                })
+                let list = document.getElementById("fruit_list").innerHTML
+
+                for (let i in fruit) {
+
+                    document.getElementById("fruit_list").innerHTML = list + "<br>" + "<option value=" + fruit[i].name + " selected >" + fruit[i].name + "</option>"
+                }
+
+                document.getElementById("war").innerHTML = "The Product is Added successfull"
+
+                setTimeout(() => {
+                    document.getElementById("war").innerHTML = ""
+
+                }, 2000)
+
+            })
+
+            let pro_price_btn = document.getElementById("pro_price_btn");
+            pro_price_btn.addEventListener("click", function () {
+                let pro_price = document.getElementById("pro_price").value;
+                let fruit_list = document.getElementById("fruit_list").value;
+
+                for (let i in fruit) {
+                    if (fruit_list == fruit[i].name) {
+                        fruit[i].price = pro_price
+
+                    }
+                }
+
+                document.getElementById("war").innerHTML = "The Product's Price is Added successfull"
+
+                setTimeout(() => {
+                    document.getElementById("war").innerHTML = ""
+
+                }, 2000)
+
+
+            })
+
+            let tra = document.getElementById("new");
+
+            tra.addEventListener("click", function () {
+
+                i = 0
+                for (let i in fruit) {
+                    console.log(i)
+                    let list = document.getElementById("fruit_list2").innerHTML
+
+                    document.getElementById("fruit_list2").innerHTML = list + "<br>" + "<option value=" + fruit[i].name + " selected >" + fruit[i].name + "/" + fruit[i].price + " per unit" + "</option>"
+                }
+
+            })
+
+            let one = document.getElementById("one").addEventListener("click", function () {
+                document.getElementById("unit").value = "1";
+            })
+            let two = document.getElementById("two").addEventListener("click", function () {
+                document.getElementById("unit").value = "2";
+            })
+            let three = document.getElementById("three").addEventListener("click", function () {
+                document.getElementById("unit").value = "3";
+            })
+            let four = document.getElementById("four").addEventListener("click", function () {
+                document.getElementById("unit").value = "4";
+            })
+            let five = document.getElementById("five").addEventListener("click", function () {
+                document.getElementById("unit").value = "5";
+            })
+            let six = document.getElementById("six").addEventListener("click", function () {
+                document.getElementById("unit").value = "6";
+            })
+            let seven = document.getElementById("seven").addEventListener("click", function () {
+                document.getElementById("unit").value = "7";
+            })
+            let eight = document.getElementById("eight").addEventListener("click", function () {
+                document.getElementById("unit").value = "8";
+            })
+            let nine = document.getElementById("nine").addEventListener("click", function () {
+                document.getElementById("unit").value = "9";
+            })
+
+
+            let cart = document.getElementById("cart");
+            cart.addEventListener("click", function () {
+                let unit = document.getElementById("unit").value;
+                let fruit_li = document.getElementById("fruit_list2").value;
+
+                for (let i in fruit) {
+                    if (fruit_li == fruit[i].name) {
+                        fruit[i].unit = unit;
+
+                    }
+                }
+                console.log(fruit);
+
+            })
+
+
+
+            let pay = document.getElementById("pay");
+            pay.addEventListener("click", function () {
+
+                for(let i in fruit){
+                    let tb_inner=document.getElementById("tb").innerHTML
+                    document.getElementById("tb").innerHTML=tb_inner+"<br>"+"<tr> <td>"+fruit[i].name+"</td> <td>"+fruit[i].price+"</td> <td>"+fruit[i].unit+"</td> <td>"+fruit[i].price* fruit[i].unit+"</td> </tr>"
+
+                    console.log(fruit[i]);
+                    
+                }
+            })
+
+        </script>
+</body>
+
+</html>
