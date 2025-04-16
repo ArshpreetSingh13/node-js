@@ -42,7 +42,7 @@
                     <div class="p-4">
 
                         <input type="text" name="" id="pro_price">
-                        <button id="pro_price_btn">Add Product</button>
+                        <button id="pro_price_btn">Add Price</button>
                     </div>
                     <p id="war" class="text-danger"></p>
                 </div>
@@ -106,14 +106,37 @@
                 </div>
 
                 <div class="C d-flex align-items-center flex-column p-4">
-                    <table class="w-100 bg-white" id="tb" class="table border border-1">
-                        <tr>
-                            <th>Product</th>
-                            <th>$/unit</th>
-                            <th>Unit(s)</th>
-                            <th>Price</th>
-                        </tr>
-                    </table>
+
+                    <div class="bg-white w-100 ">
+                        <div class="fw-bold">
+                            <div class="d-flex">
+                                <p id="day"></p>
+                                <p id="month"></p>
+                                <p id="year"></p>
+                            </div>
+                            <div class="d-flex">
+                                <p id="hour"></p>
+                                <p id="min"></p>
+                                <p id="sec"></p>
+                            </div>
+                        </div>
+                        <table class="w-100  table" id="tb">
+                            <tr>
+                                <th>Product</th>
+                                <th>$/unit</th>
+                                <th>Unit(s)</th>
+                                <th>Price</th>
+                            </tr>
+                        </table>
+                        <div class="">
+                            <p id="tprice" class="fw-bold"></p>
+                            <p id="tax" class="fw-bold"></p>
+                            <p id="amt" class="fw-bold"></p>
+                        </div>
+                    </div>
+
+
+
                 </div>
 
 
@@ -141,7 +164,7 @@
                 document.getElementById("war").innerHTML = "The Product is Added successfull"
 
                 setTimeout(() => {
-                    document.getElementById("war").innerHTML = ""
+                    document.getElementById("war").innerHTML = " "
 
                 }, 2000)
 
@@ -223,7 +246,7 @@
 
                     }
                 }
-                console.log(fruit);
+                alert("unit Added")
 
             })
 
@@ -231,15 +254,41 @@
 
             let pay = document.getElementById("pay");
             pay.addEventListener("click", function () {
+                let tprice=0
+                for (let i in fruit) {
 
-                for(let i in fruit){
-                    let tb_inner=document.getElementById("tb").innerHTML
-                    document.getElementById("tb").innerHTML=tb_inner+"<br>"+"<tr> <td>"+fruit[i].name+"</td> <td>"+fruit[i].price+"</td> <td>"+fruit[i].unit+"</td> <td>"+fruit[i].price* fruit[i].unit+"</td> </tr>"
+                    tprice=tprice+ fruit[i].price * fruit[i].unit
 
-                    console.log(fruit[i]);
-                    
+                    let tb_inner = document.getElementById("tb").innerHTML
+                    document.getElementById("tb").innerHTML = tb_inner + "<br>" + "<tr> <td>" + fruit[i].name + "</td> <td>" + fruit[i].price + "</td> <td>" + fruit[i].unit + "</td> <td>" + fruit[i].price * fruit[i].unit + "</td> </tr>"
+
+                     let hours = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+
+                    let d = new Date;
+                    document.getElementById("day").innerHTML = "Date:" + d.getDate();
+                    document.getElementById("month").innerHTML = "/" + d.getMonth();
+                    document.getElementById("year").innerHTML = "/" + d.getFullYear();
+
+                    document.getElementById("hour").innerHTML = "Time:-" + hours[d.getHours()]
+                    document.getElementById("min").innerHTML = ":" + d.getMinutes();
+                    document.getElementById("sec").innerHTML = " " + 12 > d.getHours() ? "AM" : "PM";
+
                 }
+                console.log(tprice);
+
+                document.getElementById("tprice").innerHTML="Total Price:"+tprice  
+                let tax=tprice*0.18
+                document.getElementById("tax").innerHTML="Tax"+tax 
+                let tamt= tax + tprice 
+                document.getElementById("amt").innerHTML="Amount Due:"+tamt  
+
+                
+                
+
             })
+
+           
+
 
         </script>
 </body>
