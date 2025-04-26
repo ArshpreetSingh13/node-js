@@ -6,27 +6,27 @@ const employees = [
     { id: 5, name: "Vikram", salary: 65000, department: "HR", status: "active" }
 ]
 
-let active_emp=employees.filter((e)=>{
-    if(e.status=="active"){
+let active_emp = employees.filter((e) => {
+    if (e.status == "active") {
         return e
     }
 })
- console.log(active_emp);
+console.log(active_emp);
 
 
- let emp_name=employees.map((e)=>{
+let emp_name = employees.map((e) => {
     return e.name
- })
+})
 
- console.log(emp_name)
+console.log(emp_name)
 
 
- for(let i of employees){
-    console.log("Employ Name",i.name);
-    console.log("Department",i.department);
+for (let i of employees) {
+    console.log("Employ Name", i.name);
+    console.log("Department", i.department);
     console.log("")
     console.log("")
- }
+}
 
 let emp = employees.filter((e) => {
     if (e.salary >= 60000) {
