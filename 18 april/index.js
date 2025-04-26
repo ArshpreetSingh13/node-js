@@ -5,7 +5,6 @@ let app=express()
 let PORT=5000
 
 app.use(express.urlencoded())
-
 app.use(express.json())
 
 

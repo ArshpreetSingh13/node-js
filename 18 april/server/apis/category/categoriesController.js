@@ -2,10 +2,17 @@ const Category = require("./categoryModel")
 
 let add = (req, res) => {
 
+
+
+
     validation = ""
     if (!req.body.name) {
-        validation = "name id required"
+        validation = "Name is required. "
     }
+    if (!req.file) {
+        validation += "Image is required"
+    }
+    
     if (!!validation) {
         res.send({
             success: false,
@@ -14,21 +21,22 @@ let add = (req, res) => {
         })
     }
     else {
-        Category.findOne({name:req.body.name}).then( async (categoryData)=>{
-            if (categoryData){
+        Category.findOne({ name: req.body.name }).then(async (categoryData) => {
+            if (categoryData) {
                 res.send({
                     success: false,
                     status: 402,
                     message: "Already Exist"
                 })
-            } else{
+            } else {
                 let totalCategories = await Category.countDocuments()
                 let NewCategory = new Category()
 
 
 
-                NewCategory.autoId = totalCategories+1
+                NewCategory.autoId = totalCategories + 1
                 NewCategory.name = req.body.name
+                NewCategory.image = "categoryImages/" + req.file.filename
                 NewCategory.description = req.body.description
                 NewCategory.save().then((savedCategory) => {
                     res.send({
@@ -47,7 +55,7 @@ let add = (req, res) => {
                 })
 
             }
-        }).catch((err)=>{
+        }).catch((err) => {
             res.send({
                 success: false,
                 status: 500,
@@ -56,12 +64,12 @@ let add = (req, res) => {
         })
 
 
-       
+
     }
 
 }
 
 
-module.exports={
+module.exports = {
     add
 }

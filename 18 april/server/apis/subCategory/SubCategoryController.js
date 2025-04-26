@@ -3,12 +3,14 @@ const SubCategoryModel=require("./SubCategoryModel");
 
 const add=(req,res)=>{
 
+    
+
     let validation=""
     if (!req.body.subCategoryName){
         validation ="Subcategory name is require."
     }
     if (!req.file){
-        validation +=" Image is require"
+        validation +=" Image is require."
     }
     if (!!validation){
         res.send({
