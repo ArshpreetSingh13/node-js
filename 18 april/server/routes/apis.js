@@ -24,6 +24,7 @@ const CategoryUpload = multer({ storage: CategoryStorage })
 router.post("/category/add_category/add", CategoryUpload.single('image'), categoryController.add)
 
 
+
 // SubCategory
 // SubCategory
 // SubCategory
@@ -45,5 +46,10 @@ const SubCategoryUpload = multer({ storage: SubCategoryStorage })
 
 router.post("/subCategory/add_subcategory", SubCategoryUpload.single('img'), SubCategoryController.add)
 
+router.post("/subCategory/all", SubCategoryController.all)
+router.post("/subCategory/getOne", SubCategoryController.getOne)
+router.post("/subCategory/delete", SubCategoryController.Delete)
+router.post("/subCategory/update", SubCategoryController.update)
+router.post("/subCategory/softDelete", SubCategoryController.softDelete)
 
 module.exports= router
