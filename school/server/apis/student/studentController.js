@@ -8,13 +8,16 @@ let add = (req, res) => {
     if (!req.body.name) {
         validation = "Name is required. "
     }
+    if (!req.body.course) {
+        validation += "course is required. "
+    }
     if (!req.body.age) {
         validation += "Age is required. "
     }
     if (!req.body.dob) {
         validation += "DOB is required. "
     }
-  
+
     if (!req.body.registerDate) {
         validation += "Registeration Date is required. "
     }
@@ -47,6 +50,7 @@ let add = (req, res) => {
 
                 newStudent.autoId = total + 1
                 newStudent.name = req.body.name
+                newStudent.course = req.body.course
                 newStudent.age = req.body.age
                 newStudent.dob = req.body.dob
                 newStudent.registerDate = req.body.registerDate
@@ -73,21 +77,21 @@ let add = (req, res) => {
     }
 }
 
-let SoftDelete=async(req,res)=>{
+let SoftDelete = async (req, res) => {
 
     let validation = ""
     if (!req.body._id) {
         validation = "Id is required. "
     }
-    
-    if(!!validation){
+
+    if (!!validation) {
         res.send({
             success: false,
             message: validation,
             status: 201
         })
     }
-    else{
+    else {
         await StudentModel.findOne({ _id: req.body._id }).then((result) => {
             if (!result) {
 
@@ -142,59 +146,88 @@ let all = (req, res) => {
     })
 }
 
-let update = (req, res) => {
+let update = async (req, res) => {
 
-    validation=""
+    validation = ""
 
-    if(req.body._id){
-        validation="ID is required"
+    if (!req.body._id) {
+        validation = "ID is required"
     }
 
-    if(!!validation){
+
+    // validation=[]
+
+    // if (req.body._id) {
+    //     validation.push("Id is required")
+    //     }
+
+    if (!!validation) {
         res.send({
-            success: true,
+            success: false,
             status: 201,
             message: validation
         })
     }
-   else{
-        StudentModel.findOne({ _id: req.body._id }).then((result) => {
-            if(req.body.name){
-                result.body.name=req.body.name
+    else {
+        await StudentModel.findOne({ _id: req.body._id }).then((result) => {
+
+            
+            if (!result) {
+                res.send({
+                    success: false,
+                    status: 201,
+                    message: "Not found",
+                    data: data
+                })
             }
-            if(req.body.age){
-                result.body.age=req.body.age
+            else {
+
+                if (req.body.name) {
+                    result.name = req.body.name
+                }
+                if (req.body.age) {
+                    result.age = req.body.age
+                }
+                if (req.body.dob) {
+                    result.dob = req.body.dob
+                }
+                if (req.body.registerDate) {
+                    result.registerDate = req.body.registerDate
+                }
+                if (req.body.registerDate) {
+                    result.registerDate = req.body.registerDate
+                }
+                if (req.body.fatherName) {
+                    result.fatherName = req.body.fatherName
+                }
+                if (req.body.motherName) {
+                    result.motherName = req.body.motherName
+                }
+
+                result.save().then((data) => {
+                    res.send({
+                        success: true,
+                        status: 201,
+                        message: "Updated",
+                        data: data
+                    })
+                }).catch((err) => {
+                    res.send({
+                        success: true,
+                        status: 201,
+                        message: "Not Updated"
+
+                    })
+                })
             }
-            if(req.body.dob){
-                result.body.dob=req.body.dob
-            }
-            if(req.body.registerDate){
-                result.body.registerDate=req.body.registerDate
-            }
-            if(req.body.registerDate){
-                result.body.registerDate=req.body.registerDate
-            }
-            if(req.body.fatherName){
-                result.body.fatherName=req.body.fatherName
-            }
-            if(req.body.motherName){
-                result.body.motherName=req.body.motherName
-            }
-            result.save()
-            res.send({
-                success: true,
-                status: 201,
-                message: "Updated",
-                data: result
-            })
         }).catch((err) => {
             res.send({
                 success: false,
-                message: "not Found",
+                message: "Not found",
                 status: 404
             })
         })
-   }
+    }
 }
 
 
