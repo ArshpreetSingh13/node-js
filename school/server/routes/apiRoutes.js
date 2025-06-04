@@ -7,7 +7,10 @@ const upload = multer({ storage: storage })
 
 let StudentController=require("../apis/student/studentController")
 let CourseController=require("../apis/courses/courseController")
+let teacherController=require("../apis/teacher/teacherController")
 
+
+router.post("/teacher/add", teacherController.add)
 
 router.post("/student/add",StudentController.add)
 router.post("/student/all",StudentController.all)
