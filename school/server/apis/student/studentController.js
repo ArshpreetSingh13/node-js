@@ -1,4 +1,7 @@
 const StudentModel = require("./studentModel")
+const UserModel=require("../user/userModel")
+const userModel = require("../user/userModel")
+const bcrypt= require("bcrypt")
 
 let add = (req, res) => {
 
@@ -7,6 +10,12 @@ let add = (req, res) => {
     let validation = ""
     if (!req.body.name) {
         validation = "Name is required. "
+    }
+    if (!req.body.email) {
+        validation += "email is required. "
+    }
+    if (!req.body.password) {
+        validation += "password is required. "
     }
     if (!req.body.course) {
         validation += "course is required. "
@@ -25,7 +34,10 @@ let add = (req, res) => {
         validation += "Father's Name is required. "
     }
     if (!req.body.motherName) {
-        validation += "Father's Name is required. "
+        validation += "Mother's Name is required. "
+    }
+    if (!req.body.userType) {
+        validation += "userType is required. "
     }
 
     if (!!validation) {
@@ -36,42 +48,87 @@ let add = (req, res) => {
         })
     }
     else {
-        StudentModel.findOne({ name: req.body.name, fatherName: req.body.fatherName, motherName: req.body.motherName }).then(async (existStudent) => {
-            if (existStudent) {
-                res.send({
-                    success: false,
-                    message: "Student Exist",
-                    status: 201
-                })
-            }
-            else {
-                let total = await StudentModel.countDocuments()
-                let newStudent = new StudentModel
 
-                newStudent.autoId = total + 1
-                newStudent.name = req.body.name
-                newStudent.course = req.body.course
-                newStudent.age = req.body.age
-                newStudent.dob = req.body.dob
-                newStudent.registerDate = req.body.registerDate
-                newStudent.fatherName = req.body.fatherName
-                newStudent.motherName = req.body.motherName
+        UserModel.findOne({email:req.body.email})
+        .then((UserData)=>{
+            if(!UserData){
 
-                newStudent.save().then((STUDENT) => {
-                    res.send({
-                        success: true,
-                        message: STUDENT,
-                        status: 200
+                const NewUser=new userModel
+                NewUser.name=req.body.name
+                NewUser.email = req.body.email
+
+                NewUser.password = bcrypt.hashSync(req.body.password, 10);
+                // NewUser.password = req.body.password
+                NewUser.userType = req.body.userType
+                NewUser.save()
+                .then((NewUserData)=>{
+                    StudentModel.findOne({ name: req.body.name, fatherName: req.body.fatherName, motherName: req.body.motherName }).then(async (existStudent) => {
+                        if (existStudent) {
+                            res.send({
+                                success: false,
+                                message: "Student Exist",
+                                status: 201
+                            })
+                        }
+                        else {
+                            let total = await StudentModel.countDocuments()
+                            let newStudent = new StudentModel
+
+                            newStudent.autoId = total + 1
+                            newStudent.name = req.body.name
+                            newStudent.course = req.body.course
+                            newStudent.userId = NewUserData._id
+                            newStudent.age = req.body.age
+                            newStudent.dob = req.body.dob
+                            newStudent.registerDate = req.body.registerDate
+                            newStudent.fatherName = req.body.fatherName
+                            newStudent.motherName = req.body.motherName
+
+                            newStudent.save().then((STUDENT) => {
+                                res.send({
+                                    success: true,
+                                    message: STUDENT,
+                                    user: NewUserData,
+                                    status: 200
+                                })
+                            }).catch(() => {
+                                res.send({
+                                    success: false,
+                                    message: validation,
+                                    status: 201
+                                })
+                            })
+                        }
                     })
-                }).catch(() => {
+                })
+                .catch(()=>{
                     res.send({
                         success: false,
-                        message: validation,
+                        message: " Err",
                         status: 201
                     })
                 })
+
+                
+            }
+            else{
+
+                res.send({
+                    success: false,
+                    message: "Email Exist",
+                    status: 201
+                })
             }
         })
+        .catch(()=>{
+            res.send({
+                success: false,
+                message: "last",
+                status: 201
+            })
+        })
+
+      
 
 
     }
@@ -129,7 +186,10 @@ let SoftDelete = async (req, res) => {
 }
 
 let all = (req, res) => {
-    StudentModel.find({ status: true }).then((result) => {
+    StudentModel.find()
+        .populate("course")
+        .populate("users")     
+    .then((result) => {
         res.send({
             success: true,
             status: 201,
@@ -140,7 +200,7 @@ let all = (req, res) => {
     }).catch((err) => {
         res.send({
             success: false,
-            message: "not Found",
+            message: "not f Found",
             status: 404
         })
     })

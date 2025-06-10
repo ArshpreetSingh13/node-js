@@ -12,7 +12,7 @@ let add = (req, res) => {
     if (!req.body.description) {
         validation.push( "description is required. ")
     }
-    if (!req.body.image) {
+    if (!req.file) {
         validation.push( "image is required. ")
     }
 
@@ -39,7 +39,24 @@ let add = (req, res) => {
                 newCourse.autoId = total + 1
                 newCourse.name = req.body.name
                 newCourse.description = req.body.description
-                newCourse.image = req.body.image
+                if (req.file) {
+                    try {
+                        
+                        let url = await uploadImg(req.file.buffer)
+                        newCourse.image=url
+                        console.log("url",url);
+                    }
+                    catch {
+                        
+                        console.log("err is", err);
+                        res.send({
+                            status: 400,
+                            success: false,
+                            message: "cloudnairy error!!"
+                        })
+                    }
+                }
+               
 
                 newCourse.save().then((COURSE) => {
                     res.send({
@@ -157,7 +174,7 @@ let update = async (req, res) => {
         await courseModel.findOne({ _id: req.body._id }).then((result) => {
 
             
-            if (!result) {
+             if (!result) {
                 res.send({
                     success: false,
                     status: 201,
@@ -173,18 +190,11 @@ let update = async (req, res) => {
                 if (req.body.description) {
                     result.description = req.body.description
                 }
-                // if (req.body.image) {
-                //     result.image = req.body.image
-                // }
+                if (req.body.image) {
+                    result.image = req.body.image
+                }
 
-                // if(req.body){
-                //     try{
-                //         let url= await uploadImg(req.file.buffer)
-                //     }
-                //     catch{
-
-                //     }
-                // }
+                
                 result.save().then((data) => {
                     res.send({
                         success: true,
