@@ -1,0 +1,1008 @@
+{
+	"info": {
+		"_postman_id": "b2981038-4608-46b1-91e0-8b6a074aaf81",
+		"name": "NutriSmart",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44182309",
+		"_collection_link": "https://arshpreetsingh-1512875.postman.co/workspace/Arshpreet-singh's-Workspace~9dca4a96-b4a0-40e9-8834-3fc185740a62/collection/44182309-b2981038-4608-46b1-91e0-8b6a074aaf81?action=share&source=collection_link&creator=44182309"
+	},
+	"item": [
+		{
+			"name": "trainer",
+			"item": [
+				{
+					"name": "add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Tania",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "tania@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "userType",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Kartarpur",
+									"type": "text"
+								},
+								{
+									"key": "experience",
+									"value": "2 years",
+									"type": "text"
+								},
+								{
+									"key": "profile",
+									"value": "te",
+									"type": "text"
+								},
+								{
+									"key": "contact",
+									"value": "9501154841",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/trainer/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"trainer",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/trainer/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"trainer",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOne",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "_id",
+									"value": "684a929959aa4575181aaaca",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/trainer/getOne",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"trainer",
+								"getOne"
+							],
+							"query": [
+								{
+									"key": "_id",
+									"value": "684a929959aa4575181aaaca",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "_id",
+									"value": "684a929959aa4575181aaaca",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/trainer/deleteOne",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"trainer",
+								"deleteOne"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "_id",
+									"value": "684a929959aa4575181aaaca",
+									"type": "text"
+								},
+								{
+									"key": "profile",
+									"value": "yes",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/trainer/updateOne",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"trainer",
+								"updateOne"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "customer",
+			"item": [
+				{
+					"name": "add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Arshpreet Singh",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "arsh@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "sarai khas",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "male",
+									"type": "text"
+								},
+								{
+									"key": "profile",
+									"value": "yes",
+									"type": "text"
+								},
+								{
+									"key": "contact",
+									"value": "9501154841",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/customer/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"customer",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "T",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "userType",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "experience",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "profile",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "contact",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/customer/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"customer",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOne",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "_id",
+									"value": "684a9f833eb9423dcb007b57",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/customer/getOne",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"customer",
+								"getOne"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "_id",
+									"value": "684a9f833eb9423dcb007b57",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/customer/deleteOne",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"customer",
+								"deleteOne"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "_id",
+									"value": "684a9f833eb9423dcb007b57",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "male",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/customer/updateOne",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"customer",
+								"updateOne"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Diet",
+			"item": [
+				{
+					"name": "add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "trainerId",
+									"value": "684a929959aa4575181aaaca",
+									"type": "text"
+								},
+								{
+									"key": "customerId",
+									"value": "684a9f833eb9423dcb007b57",
+									"type": "text"
+								},
+								{
+									"key": "week",
+									"value": "27-05-2025",
+									"type": "text"
+								},
+								{
+									"key": "day1",
+									"value": "mix veg",
+									"type": "text"
+								},
+								{
+									"key": "day2",
+									"value": "mix veg",
+									"type": "text"
+								},
+								{
+									"key": "day3",
+									"value": "mix veg",
+									"type": "text"
+								},
+								{
+									"key": "day4",
+									"value": "mix veg",
+									"type": "text"
+								},
+								{
+									"key": "day5",
+									"value": "mix veg",
+									"type": "text"
+								},
+								{
+									"key": "day6",
+									"value": "mix veg",
+									"type": "text"
+								},
+								{
+									"key": "day7",
+									"value": "mix veg",
+									"type": "text"
+								},
+								{
+									"key": "contact",
+									"value": "1234567890",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/diet/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"diet",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "T",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "userType",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "experience",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "profile",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "contact",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/diet/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"diet",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOne",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "_id",
+									"value": "684abeb67da4a403ffd6da0b",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/diet/getOne",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"diet",
+								"getOne"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "_id",
+									"value": "684abeb67da4a403ffd6da0b",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/diet/deleteOne",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"diet",
+								"deleteOne"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "_id",
+									"value": "684abeb67da4a403ffd6da0b",
+									"type": "text"
+								},
+								{
+									"key": "day2",
+									"value": "bhture",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/diet/updateOne",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"diet",
+								"updateOne"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Req Trainer",
+			"item": [
+				{
+					"name": "add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/RedTrainer/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"RedTrainer",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "T",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "userType",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "experience",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "profile",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "contact",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/RedTrainer/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"RedTrainer",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOne",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "_id",
+									"value": "684ac40b53dcabfdc307d053",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/RedTrainer/getOne",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"RedTrainer",
+								"getOne"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "_id",
+									"value": "684ac40b53dcabfdc307d053",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/RedTrainer/deleteOne",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"RedTrainer",
+								"deleteOne"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "_id",
+									"value": "684ac40b53dcabfdc307d053",
+									"type": "text"
+								},
+								{
+									"key": "day2",
+									"value": "bhture",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/RedTrainer/updateOne",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"RedTrainer",
+								"updateOne"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
