@@ -4,6 +4,12 @@ const trainerController=require("../apis/trainer/trainerController")
 const customerController=require("../apis/customer/customerController")
 const dietPlanController=require("../apis/dietPlan/dietPlanController")
 const RequestTrainerController=require("../apis/RequestedTrainers/RequstedTrainerController")
+const userController=require("../apis/users/userController")
+
+router.post("/customer/add",customerController.add)
+router.post("/login",userController.login)
+
+router.use(require("../middleware/middleware"))
 
 router.post("/trainer/add",trainerController.add)
 router.post("/trainer/all",trainerController.all)
@@ -11,7 +17,6 @@ router.post("/trainer/getOne",trainerController.getOne)
 router.post("/trainer/deleteOne",trainerController.deleteOne)
 router.post("/trainer/updateOne",trainerController.updateOne)
 
-router.post("/customer/add",customerController.add)
 router.post("/customer/all",customerController.all)
 router.post("/customer/getOne",customerController.getOne)
 router.post("/customer/deleteOne",customerController.deleteOne)
