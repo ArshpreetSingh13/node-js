@@ -1,5 +1,7 @@
 const customerModel = require("./customerModel")
-const userModel = require("../users/userModel")
+const userModel = require("../users/userModel");
+const { uploadImg } = require("../../utilities/helper");
+const byt = require("bcrypt")
 
 let add = (req, res) => {
 
@@ -14,14 +16,14 @@ let add = (req, res) => {
     if (!req.body.password) {
         errMsg.push("password is require")
     }
-   
+
     if (!req.body.address) {
         errMsg.push("address is require")
     }
     if (!req.body.gender) {
         errMsg.push("gender is require")
     }
-    if (!req.body.profile) {
+    if (!req.file) {
         errMsg.push("profile is require")
     }
     if (!req.body.contact) {
@@ -44,21 +46,36 @@ let add = (req, res) => {
 
                     newUser.name = req.body.name
                     newUser.email = req.body.email
-                    newUser.password = req.body.password
-                    newUser.userType = "1"
+                    newUser.password = byt.hashSync(req.body.password, 10)
+                    newUser.userType = "3"
 
                     newUser.save()
-                        .then((savedData) => {
+                        .then(async (savedData) => {
                             const newCustomer = new customerModel
 
                             newCustomer.name = req.body.name
                             newCustomer.email = req.body.email
                             newCustomer.address = req.body.address
                             newCustomer.gender = req.body.gender
-                            newCustomer.profile = req.body.profile
+                            // newCustomer.profile = req.body.profile
                             newCustomer.contact = req.body.contact
                             newCustomer.userId = savedData._id
 
+                            if (req.file) {
+                                try {
+                                    const url = await uploadImg(req.file.buffer)
+                                    newCustomer.profile = url
+                                }
+
+                                catch (err) {
+                                    res.send({
+                                        success: false,
+                                        status: 409,
+                                        message: "Cloudinary error",
+                                        error: err.message // or just err
+                                    })
+                                }  
+                            }
                             newCustomer.save()
                                 .then((SavedTrainer) => {
                                     res.send({
@@ -75,7 +92,7 @@ let add = (req, res) => {
                                     })
                                 })
                         })
-                        .catch(() => {
+                        .catch((err) => {
                             res.send({
                                 success: false,
                                 status: 202,
@@ -212,43 +229,43 @@ let deleteOne = (req, res) => {
                     })
                 }
                 else {
-                    userModel.findOne({_id:Users.userId})
-                    .then((UserM)=>{
-                        if(UserM==null){
-                            res.send({
-                                success:false,
-                                status:406,
-                                message:"User is not in Users List"
-                            })
-                        }
-                        else{
-                            
-                            UserM.status = !UserM.status
-                            UserM.save()                              
-
-                            Users.status = !Users.status
-                            Users.save()
-                                .then((ChangedData) => {
-                                    res.send({
-                                        success: true,
-                                        status: 201,
-                                        message: "Users saved",
-                                        data: ChangedData
-                                    })
+                    userModel.findOne({ _id: Users.userId })
+                        .then((UserM) => {
+                            if (UserM == null) {
+                                res.send({
+                                    success: false,
+                                    status: 406,
+                                    message: "User is not in Users List"
                                 })
-                                .catch(() => {
-                                    res.send({
-                                        success: false,
-                                        status: 203,
-                                        message: "Users not saved"
+                            }
+                            else {
 
+                                UserM.status = !UserM.status
+                                UserM.save()
+
+                                Users.status = !Users.status
+                                Users.save()
+                                    .then((ChangedData) => {
+                                        res.send({
+                                            success: true,
+                                            status: 201,
+                                            message: "Users saved",
+                                            data: ChangedData
+                                        })
                                     })
+                                    .catch(() => {
+                                        res.send({
+                                            success: false,
+                                            status: 203,
+                                            message: "Users not saved"
+
+                                        })
                                     })
-                        }
+                            }
 
-                    })
+                        })
 
-                   
+
 
                 }
             })

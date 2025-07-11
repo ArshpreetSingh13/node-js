@@ -1,4 +1,7 @@
 const router=require("express").Router()
+const multer  = require('multer')
+const storage = multer.memoryStorage()
+const upload = multer({ storage: storage })
 
 const trainerController=require("../apis/trainer/trainerController")
 const customerController=require("../apis/customer/customerController")
@@ -6,12 +9,13 @@ const dietPlanController=require("../apis/dietPlan/dietPlanController")
 const RequestTrainerController=require("../apis/RequestedTrainers/RequstedTrainerController")
 const userController=require("../apis/users/userController")
 
-router.post("/customer/add",customerController.add)
+router.post("/customer/add",upload.single("profile"),customerController.add)
 router.post("/login",userController.login)
-
-router.use(require("../middleware/middleware"))
-
 router.post("/trainer/add",trainerController.add)
+
+// router.use(require("../middleware/middleware"))
+
+
 router.post("/trainer/all",trainerController.all)
 router.post("/trainer/getOne",trainerController.getOne)
 router.post("/trainer/deleteOne",trainerController.deleteOne)

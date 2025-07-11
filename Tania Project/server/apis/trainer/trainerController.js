@@ -1,6 +1,6 @@
 const trainerModel = require("./trainerModel")
 const userModel = require("../users/userModel")
-
+const bycrypt=require("bcrypt")
 let add = (req, res) => {
 
     let errMsg = []
@@ -44,7 +44,7 @@ let add = (req, res) => {
 
                     newUser.name = req.body.name
                     newUser.email = req.body.email
-                    newUser.password = req.body.password
+                    newUser.password = bycrypt.hashSync(req.body.password,10) 
                     newUser.userType = "2"
 
                     newUser.save()
